@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predict Page</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+        }
+
+        .container {
+            height: 100%;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 0;
+            margin-top: 30px;
+            background-color: white;
+        }
+
+        h2,
+        h6 {
+            margin-top: 0;
+            color: black;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .input-group select,
+        .input-group input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2><b>House Loan Eligibility Prediction</b></h2>
+        <h6><b>Please enter the details in order to check your house loan eligibility</b></h6>
+
+        <form class="p-3" action="{{ url_for('predict')}}" method="post">
+            <div class="form-group row">
+                <label for="gender" class="col-6 col-form-label">
+                    Gender
+                </label>
+                <div class="col-6">
+                    <select id="gender" name="gender" class="custom-select" required="required">
+                        <option value="1">Male</option>
+                        <option value="0">Female</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="married" class="col-6 col-form-label">
+                    Married
+                </label>
+                <div class="col-6">
+                    <select id="married" name="married" class="custom-select" required="required">
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="dependents" class="col-6 col-form-label">
+                    Dependents
+                </label>
+                <div class="col-6">
+                    <input id="dependents" name="dependents" type="number" class="form-control" required="required">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="education" class="col-6 col-form-label">
+                    Education
+                </label>
+                <div class="col-6">
+                    <select id="education" name="education" class="custom-select" required="required">
+                        <option value="0">Graduate</option>
+                        <option value="1">Non Graduate</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="self_employed" class="col-6 col-form-label">
+                    Self Employed
+                </label>
+                <div class="col-6">
+                    <select id="self_employed" name="self_employed" class="custom-select" required="required">
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="applicant_income" class="col-6 col-form-label">
+                    Applicant's Income ($)
+                </label>
+                <div class="col-6">
+                    <input id="applicant_income" name="applicant_income" type="number" class="form-control"
+                        required="required">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="coapplicant_income" class="col-6 col-form-label">
+                    Coapplicant's Income ($)
+                </label>
+                <div class="col-6">
+                    <input id="coapplicant_income" name="coapplicant_income" type="number" class="form-control"
+                        required="required">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="loan_amount" class="col-6 col-form-label">
+                    Loan Amount in thousands ($)
+                </label>
+                <div class="col-6">
+                    <input id="loan_amount" name="loan_amount" type="number" class="form-control" required="required">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="loan_amount_term" class="col-6 col-form-label">
+                    Loan Amount Term (In Months)
+                </label>
+                <div class="col-6">
+                    <input id="loan_amount_term" name="loan_amount_term" type="number" class="form-control"
+                        required="required">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="credit_history" class="col-6 col-form-label">
+                    Credit History
+                </label>
+                <div class="col-6">
+                    <select id="credit_history" name="credit_history" class="custom-select">
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="property_area" class="col-6 col-form-label">
+                    Property Area
+                </label>
+                <div class="col-6">
+                    <select id="property_area" name="property_area" class="custom-select">
+                        <option value="0">Rural</option>
+                        <option value="1">Semi Urban</option>
+                        <option value="2">Urban</option>
+                    </select>
+                </div>
+            </div>
+            <br>
+            <div style="margin-bottom: 5px; margin-left: -15px;">
+                <div class="col-md-6">
+                    <button name="submit" type="submit" class="btn btn-success">
+                        Submit
+                    </button>
+                </div>
+            </div>
+        </form>
+        <div class="mb-2 col-md-6">
+            <a href="{{ url_for('logout') }}" class="btn btn-danger "
+                style="max-width: 180px; min-width: 180px; text-align: left;">
+                Press here to logout
+            </a>
+        </div>
+        <div class="mb-2">
+            <h3
+                style="color: black; background-color: transparent; padding: 15px; text-align: left; font-weight: bold; margin-left: 10px;">
+                {{ message }}
+            </h3>
+        </div>
+
+    </div>
+</body>
+
+</html>

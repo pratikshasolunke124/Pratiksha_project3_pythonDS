@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            text-align: center;
+        }
+        h1 {
+            color: black;
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #498d7e;
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #385f54;
+        }
+        .signup-btn {
+            background-color: #498d7e;
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        .signup-btn:hover {
+            background-color: #385f54;
+        }
+        .message {
+            background-color: transparent;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .message-red {
+            color: red;
+        }
+
+        .message-green {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Login Page</h1>
+        <form class="form" action="{{ url_for('login')}}" method="post">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit" class="btn">Login</button>
+        </form>
+        <a href="register.html" class="signup-btn">Don't have an account? Sign Up</a>
+    </div>
+    <div class="message message-green" id="messageDiv2">
+        <h5>
+            {{ message2 }}
+        </h5>
+    </div>
+    <div class="message message-red" id="messageDiv1">
+        <h5>
+            {{ message1 }}
+        </h5>
+    </div>
+    <script>
+        
+        window.onload = function () {
+            var messageDiv1 = document.getElementById('messageDiv1');
+            var messageDiv2 = document.getElementById('messageDiv2');
+    
+            setTimeout(function () {
+                if (messageDiv1) {
+                    messageDiv1.style.display = 'none';
+                }
+            }, 3000); // 3sec
+    
+            setTimeout(function () {
+                if (messageDiv2) {
+                    messageDiv2.style.display = 'none';
+                }
+            }, 5000); // 5 sec
+        };
+    </script>
+</body>
+</html>
